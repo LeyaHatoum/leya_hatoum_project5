@@ -18,8 +18,8 @@ class Dimensions extends Component {
       url: `https://rickandmortyapi.com/api/location/`,
       dataResponse: "json",
       params: {
-        type: "Microverse"
-        // dimension: "Replacement dimension"
+        // type: "Microverse"
+        dimension: "Replacement dimension"
       }
     }).then(
       (response) => {
@@ -48,7 +48,7 @@ class Dimensions extends Component {
     const dimensionButtons = buttons.map( button => { 
       if (button.residents.length > 0){
         return (
-          <div key={button.id} >
+          <div key={button.name} >
             <input type="submit" value={button.name}
             onClick={((event) => onChangeShowListValue(event))} />
             <Characters
@@ -60,9 +60,9 @@ class Dimensions extends Component {
         )
       }
       return (
-        <div key={button.id} >
+        <div key={button.name} >
           <button>{button.name}</button>
-          <p>No characters available</p>
+          <p>No one lives here</p>
         </div>
       )
     })
