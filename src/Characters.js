@@ -11,9 +11,8 @@ class Characters extends Component {
     };
   }
 
-  componentDidMount(residents) {
-    const residentsOfThisDimension = [];
-    residents.map(resident => {
+  componentDidMount() {
+    const allResidents = this.props.residents.map(resident => {
       return (
         axios({
           method: "GET",
@@ -21,20 +20,36 @@ class Characters extends Component {
           dataResponse: "json"
         }).then(
           (response) => {
-           residentsOfThisDimension.push(response)
+            return response.data
           }
         )
       )
     })
-    this.setState({
-      characters: residentsOfThisDimension,
+
+    Promise.all([...allResidents]).then(values => {
+      this.setState({
+        characters: values
+      });
     })
   }
-  
 
   render() {
+    const doIShow = this.props.show
+    const characters = this.state.characters
+
+    const theResidents = characters.map( character => {
+      if (doIShow === true){
+        return (
+          <p key={character.id}>{character.name}</p>
+        )
+      }
+      return null;
+    })
+    
     return (
-      <p>I'm a Character</p>
+      <div key={this.props.planet}>
+      {theResidents}
+      </div>
     );
   }
 }

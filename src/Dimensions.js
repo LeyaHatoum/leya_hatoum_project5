@@ -8,48 +8,79 @@ class Dimensions extends Component {
   constructor() {
     super();
     this.state = {
-      results: [],
-      residents: []
+      buttons: []
     };
   }
 
   componentDidMount() {
-
-    console.log("Dimensions component mounted");
     axios({
       method: "GET",
       url: `https://rickandmortyapi.com/api/location/`,
       dataResponse: "json",
       params: {
-        type: "Planet"
+        type: "Microverse"
         // dimension: "Replacement dimension"
       }
     }).then(
       (response) => {
         const results = response.data.results
-        const allTheResidents = results.map( planet => {
-          return planet.residents
+        const array = results.map(result => {
+          return ({
+            name: result.name,
+            residents: result.residents,
+            showList: false
+          })
         })
         this.setState({
-          results: results,
-          residents: allTheResidents
-        })
+          buttons: array
+        });
       }
     )
   }
-
-  render() {
   
-    console.log("all the residents", this.state.residents)
-    const dimensions = this.state.results
-    const dimensionButtons = dimensions.map((dimension) => {
+  
+  render() {
+
+    //Create buttons out of all the objects (dimensions) in order to make them clickable and reveal the characters in them.
+    const buttons = this.state.buttons
+
+    //The onClick event will have to take a function that finds the button object that was clicked on and change its corresponding showList key's value 
+    const dimensionButtons = buttons.map( button => { 
+      if (button.residents.length > 0){
+        return (
+          <div key={button.id} >
+            <input type="submit" value={button.name}
+            onClick={((event) => onChangeShowListValue(event))} />
+            <Characters
+            planet={button.name}
+            residents={button.residents}
+            show={button.showList}
+            />
+          </div>
+        )
+      }
       return (
-      <div>
-        <button>{dimension.name}</button>
-        {/* <Characters residents={dimension.residents} /> */}
-      </div>
-      );
+        <div key={button.id} >
+          <button>{button.name}</button>
+          <p>No characters available</p>
+        </div>
+      )
     })
+    
+    const onChangeShowListValue = event => {
+      const buttonClicked = event.target.value;
+      this.setState({
+        buttons: this.state.buttons.map(button => {
+          if (button.name === buttonClicked) {
+            return {
+              ...button,
+              showList: !button.showList
+            }
+          }
+          return button;
+        })
+      })
+    }
   
     return (
       <div>
