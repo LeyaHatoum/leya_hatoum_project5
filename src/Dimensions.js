@@ -13,14 +13,17 @@ class Dimensions extends Component {
   }
 
   componentDidMount() {
+    const dimensionURLFormat = this.props.dimensionName.split(' ').join('+');
+    console.log(dimensionURLFormat)
+
     axios({
       method: "GET",
-      url: `https://rickandmortyapi.com/api/location/`,
+      url: `https://rickandmortyapi.com/api/location/?dimension=${dimensionURLFormat}`,
       dataResponse: "json",
-      params: {
-        // type: "Microverse"
-        dimension: "Replacement dimension"
-      }
+      // params: {
+      //   // type: "Microverse"
+      //   dimension: {theDimension}
+      // }
     }).then(
       (response) => {
         const results = response.data.results
@@ -43,10 +46,10 @@ class Dimensions extends Component {
 
     //Create buttons out of all the objects (dimensions) in order to make them clickable and reveal the characters in them.
     const buttons = this.state.buttons
-
+    const amIClicked = this.props.amIClicked
     //The onClick event will have to take a function that finds the button object that was clicked on and change its corresponding showList key's value 
-    const dimensionButtons = buttons.map( button => { 
-      if (button.residents.length > 0){
+    const dimensionButtons = buttons.map( button => {
+      if (button.residents.length > 0 && amIClicked === true){
         return (
           <div key={button.name} >
             <input type="submit" value={button.name}
