@@ -14,7 +14,6 @@ class Dimensions extends Component {
 
   componentDidMount() {
     const dimensionURLFormat = this.props.dimensionName.split(' ').join('+');
-    console.log(dimensionURLFormat)
 
     axios({
       method: "GET",
@@ -61,13 +60,15 @@ class Dimensions extends Component {
             />
           </div>
         )
+      }else if (amIClicked === true){
+        return (
+          <div key={button.name} >
+            <button>{button.name}</button>
+            <p>No one lives here</p>
+          </div>
+        )
       }
-      return (
-        <div key={button.name} >
-          <button>{button.name}</button>
-          <p>No one lives here</p>
-        </div>
-      )
+      return null;
     })
     
     const onChangeShowListValue = event => {

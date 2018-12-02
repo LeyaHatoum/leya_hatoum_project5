@@ -1,0 +1,75 @@
+@mixin wrapper () {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+$Pragati: 'Pragati Narrow', sans-serif;
+
+
+body {
+  background: radial-gradient(ellipse at bottom, rgb(45, 58, 73) 0%, #090A0F 100%);
+  color: white;
+  font-size: 62.5%;
+  @include wrapper();
+}
+
+
+.App {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+  text-align: center;
+  
+}
+
+.particles {
+  position: absolute;
+  height: 100vh;
+  width: 100vh;
+  z-index: -1;
+}
+
+h1 {
+  width: 100%;
+  font-family: $Pragati;
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.intro {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 0 25px 0;
+  font-family: $Pragati;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+.dimension {
+  width: calc((100% / 3) - 30px);
+  padding: 0;
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  // border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 2px 2px rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.dimension-input {
+  width: 300px;
+  height: 60px;
+  background: none;
+  border: none;
+  font-family: $Pragati;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+  
+}

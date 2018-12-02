@@ -3,9 +3,6 @@ const dimensions = [
     name: "Dimension C-137",
     clicked: false
   }, {
-    name: "unknown",
-    clicked: false
-  }, {
     name: "Unknown dimension",
     clicked: false
   }, {
