@@ -42,10 +42,6 @@ class App extends Component {
   
   
   render() {
-    
-    const hideOthers = (event) => {
-      console.log(event.target)
-    }
 
     const showDimension = event => {
       const dimensionClicked = event.target.value

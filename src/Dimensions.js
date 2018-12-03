@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Characters from "./Characters";
 
-//Here we get the all the dimensions in Rick and Morty's multiverse. There are 4 pages of results so that API needs to be called 4 times.
+//Here we get the all the planets in the dimensions of Rick and Morty's multiverse.
 
 class Dimensions extends Component {
   constructor() {
@@ -18,11 +18,7 @@ class Dimensions extends Component {
     axios({
       method: "GET",
       url: `https://rickandmortyapi.com/api/location/?dimension=${dimensionURLFormat}`,
-      dataResponse: "json",
-      // params: {
-      //   // type: "Microverse"
-      //   dimension: {theDimension}
-      // }
+      dataResponse: "json"
     }).then(
       (response) => {
         const results = response.data.results
