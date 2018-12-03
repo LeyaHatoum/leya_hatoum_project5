@@ -3,7 +3,7 @@ import React from 'react';
 function Resident(props) {
   return (
     <div>
-       <div key={props.id} className="resident">
+        <div key={props.id} className="resident">
               <div className="resident-info">
                 <p>ID: {props.id}</p>
                 <p>Name: {props.name}</p>
@@ -14,7 +14,7 @@ function Resident(props) {
                 <img src={props.image} alt={props.name} />
               </div>
               <p className="resident-status">Status: {props.status}</p>
-            </div>
+        </div>
     </div>
   )
 }

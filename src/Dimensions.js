@@ -26,6 +26,7 @@ class Dimensions extends Component {
           return ({
             name: result.name,
             residents: result.residents,
+            type: result.type,
             showList: false
           })
         })
@@ -47,10 +48,13 @@ class Dimensions extends Component {
       if (button.residents.length > 0 && amIClicked === true){
         return (
           <div key={button.name} className="planet" >
-            <input className="planet-input" type="submit" value={button.name}
+            <label htmlFor="planet-name">{button.name}</label>
+            <input id="planet-name" className="planet-input" type="submit" value={button.name}
             onClick={((event) => onChangeShowListValue(event))} 
-            style={{"height": `${button.name.length}rem`}}
+            style={{"height": `${button.name.length}rem`,
+            "width": `${button.name.length}rem`}}
             />
+            <p className="planet--type">Type: {button.type}</p>
             <Characters
             planet={button.name}
             residents={button.residents}
@@ -61,9 +65,12 @@ class Dimensions extends Component {
       }else if (amIClicked === true){
         return (
           <div key={button.name} className="planet" >
-            <input className="planet-input" type="submit" value={button.name}
-              style={{ "height": `${button.name.length}rem` }}
+            <label htmlFor="planet-name">{button.name}</label>
+            <input id="planet-name" className="planet-input--clicked" type="submit" value={button.name}
+              style={{ "height": `${button.name.length}rem`, 
+              "width": `${button.name.length}rem`}}
             />
+            <p>Type: {button.type}</p>
             <p className="no-residents" >No one lives here</p>
           </div>
         )
@@ -88,6 +95,7 @@ class Dimensions extends Component {
   
     return (
       <div className="planet-container" >
+        {(amIClicked ===true) ? <p className="planet--info" >Click on a planet to see its residents.</p> : null}
         {dimensionButtons}
       </div>
     );

@@ -35,7 +35,6 @@ class Characters extends Component {
   }
   
   render() {
-    console.log("Characters is working!")
     const doIShow = this.props.show
 
     if (doIShow === true){

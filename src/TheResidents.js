@@ -45,7 +45,7 @@ class TheResidents extends Component {
       return (
         <div>
           <Resident {...residentInfo} />
-          <div>
+          <div className="resident-large_more_container">
             <Prev toggle={(event) => this.togglePrev(event)} active={disabledPrev} />
             <Next toggle={(event) => this.toggleNext(event)} active={disabledNext} />
           </div>
