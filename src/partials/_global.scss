@@ -5,14 +5,13 @@
 
 $Pragati: 'Pragati Narrow', sans-serif;
 
-
 body {
   background: radial-gradient(ellipse at bottom, rgb(45, 58, 73) 0%, #090A0F 100%);
   color: white;
   font-size: 62.5%;
   @include wrapper();
+  height: 100%;
 }
-
 
 .App {
   display: flex;
@@ -25,8 +24,8 @@ body {
 
 .particles {
   position: absolute;
-  height: 100vh;
-  width: 100vh;
+  height: 90%;
+  width: 100%;
   z-index: -1;
 }
 
@@ -40,7 +39,7 @@ h1 {
 
 .intro {
   width: 100%;
-  max-width: 800px;
+  padding: 0 10%;
   margin: 0 0 25px 0;
   font-family: $Pragati;
   font-size: 1.4rem;
@@ -48,20 +47,33 @@ h1 {
 }
 
 .dimension {
-  width: calc((100% / 3) - 30px);
   padding: 0;
-  margin: 5px;
-  background: rgba(255, 255, 255, 0.15);
-  // border: 2px solid rgba(255, 255, 255, 0.6);
+  width: 100%;
+  background: rgba(51, 113, 141, 0.05);
   box-shadow: 2px 2px rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
   display: flex;
   justify-content: center;
   flex-flow: wrap;
+  flex-grow: 10;
+  font-size: 1.8rem;
+
+  
 }
 
+.dimension--notClicked {
+  @extend .dimension; 
+  background: rgba(51, 113, 141, 0.3);
+  flex-grow: 1;
+  width: calc(100% / 3);
+  min-width: 300px;
+  
+  :hover {
+    background: rgba(170, 96, 255, 0.4);
+  }
+}
+
+
 .dimension-input {
-  width: 300px;
   height: 60px;
   background: none;
   border: none;
@@ -71,5 +83,27 @@ h1 {
   text-transform: uppercase;
   font-weight: 700;
   color: white;
-  
+  width: 100%;
+}
+
+.planet-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.planet {
+  margin: 5%;
+}
+
+.planet-input {
+  background: rgba(170, 96, 255, 0.2);
+  border-radius: 50%;
+  border: none;
+  padding: 0 20px;
+}
+
+.no-residents {
+  font-size: 1rem;
 }

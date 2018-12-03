@@ -50,9 +50,11 @@ class Dimensions extends Component {
     const dimensionButtons = buttons.map( button => {
       if (button.residents.length > 0 && amIClicked === true){
         return (
-          <div key={button.name} >
-            <input type="submit" value={button.name}
-            onClick={((event) => onChangeShowListValue(event))} />
+          <div key={button.name} className="planet" >
+            <input className="planet-input" type="submit" value={button.name}
+            onClick={((event) => onChangeShowListValue(event))} 
+            style={{"height": `${button.name.length}rem`}}
+            />
             <Characters
             planet={button.name}
             residents={button.residents}
@@ -62,13 +64,15 @@ class Dimensions extends Component {
         )
       }else if (amIClicked === true){
         return (
-          <div key={button.name} >
-            <button>{button.name}</button>
-            <p>No one lives here</p>
+          <div key={button.name} className="planet" >
+            <input className="planet-input" type="submit" value={button.name}
+              style={{ "height": `${button.name.length}rem` }}
+            />
+            <p className="no-residents" >No one lives here</p>
           </div>
         )
       }
-      return null;
+      return null;  
     })
     
     const onChangeShowListValue = event => {
@@ -87,7 +91,7 @@ class Dimensions extends Component {
     }
   
     return (
-      <div>
+      <div className="planet-container" >
         {dimensionButtons}
       </div>
     );

@@ -40,11 +40,16 @@ class App extends Component {
   }
 
   
+  
   render() {
     
+    const hideOthers = (event) => {
+      console.log(event.target)
+    }
+
     const showDimension = event => {
-      console.log(event.target.value, ": I was clicked")
-      const dimensionClicked = event.target.value 
+      const dimensionClicked = event.target.value
+      
       this.setState({
         dimensions: this.state.dimensions.map(dimension => {
           if (dimension.name === dimensionClicked) {
@@ -56,22 +61,20 @@ class App extends Component {
           return dimension;
         })
       })
-      return 
+      return
     };
     
-    
-
     return (
       <div className="App">
-        <Particles params={particleOpt} className="particles"/>
+        {/* <Particles params={particleOpt} className="particles"/> */}
         <h1>Welcome to the Multiverse</h1>
         <p className="intro">The multiverse is a concept that refers to the existence of infinite universes that comprise everything that is. It contains an infinite amount of versions of every character in the Rick and Morty series. This site documents every dimension discovered by Rick and Morty during their adventures.</p>
-        <p className="intro">Pick a dimension to explore.</p>
+        <p className="intro">Pick one to explore.</p>
         {
           this.state.dimensions.map((dimension) => {
             return (
-              <div className="dimension" key={dimension.name}>
-                <input className="dimension-input" type="submit" value={dimension.name} onClick={(event) => { showDimension(event) }} />
+              <div className={(dimension.clicked === true) ?"dimension" : "dimension--notClicked"} key={dimension.name}>
+                <input className="dimension-input" type="submit" value={dimension.name} onClick={(event) => { showDimension(event)}} /> 
                 <Dimensions
                   dimensionName={dimension.name}
                   amIClicked={dimension.clicked}
